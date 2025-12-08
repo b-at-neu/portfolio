@@ -1,37 +1,20 @@
 import { Image } from "lucide-react";
 
-// Sample projects data - In production, this would come from Prisma/database
-const projects = [
-  {
-    id: "1",
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution built with Next.js, Prisma, and Stripe integration.",
-    imageUrl: "/placeholder-project.jpg",
-    tags: ["Next.js", "Prisma", "Tailwind CSS", "Stripe"],
-    projectUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: "2",
-    title: "Task Management App",
-    description: "A collaborative task management application with real-time updates and team features.",
-    imageUrl: "/placeholder-project.jpg",
-    tags: ["React", "Node.js", "Socket.io", "MongoDB"],
-    projectUrl: "#",
-    githubUrl: "#",
-  },
-  {
-    id: "3",
-    title: "Portfolio Website",
-    description: "A modern portfolio website showcasing projects and skills with a clean design.",
-    imageUrl: "/placeholder-project.jpg",
-    tags: ["Next.js", "Tailwind CSS", "Prisma", "TypeScript"],
-    projectUrl: "#",
-    githubUrl: "#",
-  },
-];
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string | null;
+  projectUrl: string | null;
+  githubUrl: string | null;
+  tags: string[];
+}
 
-export default function Projects() {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+export default function Projects({ projects }: ProjectsProps) {
   return (
     <section id="projects" className="py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -77,18 +60,22 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="mt-4 flex gap-4">
-                  <a
-                    href={project.projectUrl}
-                    className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
-                  >
-                    View Project →
-                  </a>
-                  <a
-                    href={project.githubUrl}
-                    className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
-                  >
-                    GitHub
-                  </a>
+                  {project.projectUrl && (
+                    <a
+                      href={project.projectUrl}
+                      className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300"
+                    >
+                      View Project →
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200"
+                    >
+                      GitHub
+                    </a>
+                  )}
                 </div>
               </div>
             </article>
