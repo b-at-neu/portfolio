@@ -1,4 +1,6 @@
-import { Prisma, PrismaClient } from "@/generated/prisma";
+import { PrismaClient } from "@prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 
 declare global {
   var cachedPrisma: PrismaClient | undefined;
@@ -7,13 +9,17 @@ declare global {
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient({});
+  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  const adapter = new PrismaPg(pool);
+  prisma = new PrismaClient({ adapter });
 } else {
   if (!global.cachedPrisma) {
-    global.cachedPrisma = new PrismaClient({});
+    const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+    const adapter = new PrismaPg(pool);
+    global.cachedPrisma = new PrismaClient({ adapter });
   }
   prisma = global.cachedPrisma;
 }
 
 export default prisma;
-export { prisma, Prisma };
+export { prisma };
