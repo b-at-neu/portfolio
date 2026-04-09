@@ -1,4 +1,5 @@
 import { Github, Linkedin } from 'lucide-react';
+import CopyEmail from './CopyEmail';
 
 const socialLinks = [
   {
@@ -17,7 +18,8 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
       <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="flex justify-center space-x-6 md:order-2">
+        <div className="flex items-center justify-center gap-6 md:order-2">
+          <CopyEmail />
           {socialLinks.map((item) => (
             <a
               key={item.name}
