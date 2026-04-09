@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "winkler.dev",
   description: "winkler.dev — personal site and portfolio",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
