@@ -1,38 +1,11 @@
-import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { Pool } from "pg";
+import { PrismaClient } from "@/generated/prisma";
 
-declare global {
-  var cachedPrisma: PrismaClient | undefined;
-  var cachedPool: Pool | undefined;
-}
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
 
-let prisma: PrismaClient;
+export const prisma = globalForPrisma.prisma ?? new PrismaClient();
 
-if (process.env.NODE_ENV === "production") {
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    max: 10,
-    idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 10000,
-  });
-  const adapter = new PrismaPg(pool);
-  prisma = new PrismaClient({ adapter });
-} else {
-  if (!global.cachedPool) {
-    global.cachedPool = new Pool({
-      connectionString: process.env.DATABASE_URL,
-      max: 10,
-      idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 10000,
-    });
-  }
-  if (!global.cachedPrisma) {
-    const adapter = new PrismaPg(global.cachedPool);
-    global.cachedPrisma = new PrismaClient({ adapter });
-  }
-  prisma = global.cachedPrisma;
-}
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 
 export default prisma;
-export { prisma };
