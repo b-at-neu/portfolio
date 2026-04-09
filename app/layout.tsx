@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "@/components";
 
 export const metadata: Metadata = {
   title: "winkler.dev",
   description: "winkler.dev — personal site and portfolio",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -12,9 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="font-sans antialiased">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

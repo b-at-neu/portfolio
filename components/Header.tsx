@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navigation = [
   { name: "Home", href: "#home" },
@@ -21,7 +22,8 @@ export default function Header() {
             winkler.dev
           </Link>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeToggle />
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-zinc-700 dark:text-zinc-300"
@@ -41,6 +43,9 @@ export default function Header() {
               {item.name}
             </a>
           ))}
+        </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <ThemeToggle />
         </div>
       </nav>
 
