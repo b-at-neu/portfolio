@@ -28,6 +28,6 @@
     "scope": true
   },
   "reviewCycleCap": 5,
-  "sessionRequiredPaths": ["CLAUDE.md", ".claude/**", "port.config.json"],
+  "sessionRequiredPaths": ["CLAUDE.md", ".claude/**"],
   "extraAllow": []
 }
