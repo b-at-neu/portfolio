@@ -1,0 +1,33 @@
+{
+  "$schema": "https://raw.githubusercontent.com/b-at-neu/port/main/schema/port.config.schema.json",
+  "tracker": "github",
+  "repo": "b-at-neu/winkler.dev",
+  "branches": {
+    "integration": "dev",
+    "production": "main"
+  },
+  "commands": {
+    "bootstrap": ["npm ci"],
+    "checks": ["npx eslint .", "npx tsc --noEmit"]
+  },
+  "docs": {
+    "engineering": null,
+    "design": null
+  },
+  "models": {
+    "plan": "opus",
+    "impl": "sonnet",
+    "review": "sonnet",
+    "revise": "sonnet"
+  },
+  "labels": {},
+  "modules": {
+    "approvalGate": false,
+    "previewDatabase": false,
+    "release": true,
+    "scope": true
+  },
+  "reviewCycleCap": 5,
+  "sessionRequiredPaths": ["CLAUDE.md", ".claude/**", "port.config.json"],
+  "extraAllow": []
+}
