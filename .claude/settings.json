@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "port": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/b-at-neu/port.git"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "port@port": true
+  }
+}
