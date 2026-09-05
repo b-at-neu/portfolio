@@ -1,5 +1,7 @@
 import { Github, Linkedin } from 'lucide-react';
 
+import CopyEmailButton from './CopyEmailButton';
+
 const socialLinks = [
   {
     name: 'GitHub',
@@ -17,7 +19,8 @@ export default function Footer() {
   return (
     <footer className="bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
       <div className="mx-auto max-w-7xl px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-        <div className="flex justify-center space-x-6 md:order-2">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:order-2">
+          <CopyEmailButton variant="footer" />
           {socialLinks.map((item) => (
             <a
               key={item.name}
