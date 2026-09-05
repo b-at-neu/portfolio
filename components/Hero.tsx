@@ -1,3 +1,5 @@
+import CopyEmailButton from './CopyEmailButton';
+
 export default function Hero() {
   return (
     <section
@@ -17,13 +19,14 @@ export default function Hero() {
             functional web experiences. I specialize in building modern
             applications with cutting-edge technologies.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
             <a
               href="#projects"
               className="rounded-md bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-colors"
             >
               View My Work
             </a>
+            <CopyEmailButton variant="hero" />
           </div>
         </div>
       </div>
